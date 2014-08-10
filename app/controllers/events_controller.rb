@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
-
+	#TODO figue out how to do authentication with android app
 	 skip_before_filter :verify_authenticity_token
+
 	def index
 		@events = Event.all
 	end
@@ -9,10 +10,11 @@ class EventsController < ApplicationController
 		@event = Event.new(event_params)
 
 		respond_to do |format|
-			if !@event.save
+			if @event.save
 				# format.json{render action: 'index', formats: 'html'}
 				# redirect_to action: 'index'
-			# else
+				format.json{render plain: 'success'}
+			 else
 				format.json {render json: @event.errors, status: :unprocessable_entity}
 			end
 		end
@@ -34,6 +36,7 @@ class EventsController < ApplicationController
 
     private
     	def event_params
+				#TODO figure out a more cleaner way of mapping camel_case to snake_case
 				params[:event][:event_date] = params[:eventDate] unless params[:event].nil?
     		params.require(:event).permit(:latitude,:longitude,:status,:event_date)
     	end
