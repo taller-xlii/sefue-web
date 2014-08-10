@@ -1,0 +1,39 @@
+<h2>Events</h1>
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Status</th>
+      <th>Event date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @events.each do |event| %>
+      <tr>
+        <td>
+          <%= event.id  %>
+        </td>
+        <td>
+          <%= event.latitude %>
+        </td>
+       <td>
+          <%= event.longitude %>
+        </td>
+        <td>
+          <%= event.status %>
+        </td>
+        <td>
+          <%= event.event_date %>
+        </td>
+        <td>
+          <!--%= link_to "Work on #{event.title}", event_path(event), {class: "btn btn-default"} %-->
+     	show event
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br/>
+<!--%= link_to 'Add new event', new_project_path, { class: "btn btn-primary"} %->
